@@ -1,6 +1,6 @@
 import axios from "axios";
 
-function TaskCard({ task, fetchTasks }) {
+function TaskCard({ task, fetchTasks, onEdit }) {
   const handleToggle = async () => {
     try {
       await axios.patch(
@@ -57,6 +57,13 @@ function TaskCard({ task, fetchTasks }) {
         {task.completed
           ? "Mark Active"
           : "Mark Complete"}
+      </button>
+
+      <button
+        onClick={() => onEdit(task)}
+        style={{ marginLeft: "10px" }}
+      >
+        Edit
       </button>
 
       <button

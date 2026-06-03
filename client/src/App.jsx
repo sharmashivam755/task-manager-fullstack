@@ -7,6 +7,7 @@ import TaskList from "./components/TaskList";
 function App() {
   const [tasks, setTasks] = useState([]);
   const [filter, setFilter] = useState("all");
+  const [editingTask, setEditingTask] = useState(null);
 
   const fetchTasks = async () => {
     try {
@@ -58,7 +59,11 @@ function App() {
 
       <hr />
 
-      <TaskForm fetchTasks={fetchTasks} />
+      <TaskForm
+        fetchTasks={fetchTasks}
+        editingTask={editingTask}
+        setEditingTask={setEditingTask}
+      />
 
       <hr />
 
@@ -85,6 +90,7 @@ function App() {
       <TaskList
         tasks={filteredTasks}
         fetchTasks={fetchTasks}
+        onEdit={setEditingTask}
       />
     </div>
   );

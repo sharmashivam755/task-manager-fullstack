@@ -1,6 +1,6 @@
 import TaskCard from "./TaskCard";
 
-function TaskList({ tasks, fetchTasks }) {
+function TaskList({ tasks, fetchTasks, onEdit }) {
   if (tasks.length === 0) {
     return (
       <div>
@@ -17,6 +17,7 @@ function TaskList({ tasks, fetchTasks }) {
           key={task.id}
           task={task}
           fetchTasks={fetchTasks}
+          onEdit={onEdit}
         />
       ))}
     </div>
