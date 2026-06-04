@@ -13,7 +13,7 @@ function App() {
   const fetchTasks = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/tasks"
+        "https://task-manager-fullstack-il39.onrender.com/api/tasks"
       );
 
       setTasks(response.data);

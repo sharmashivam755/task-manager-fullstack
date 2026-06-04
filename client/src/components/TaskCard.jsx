@@ -9,7 +9,7 @@ function TaskCard({ task, fetchTasks, onEdit }) {
   const handleToggle = async () => {
     try {
       await axios.patch(
-        `http://localhost:5000/api/tasks/${task.id}/toggle`
+        `https://task-manager-fullstack-il39.onrender.com/api/tasks/${task.id}/toggle`
       );
 
       fetchTasks();
