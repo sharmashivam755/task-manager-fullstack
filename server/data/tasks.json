@@ -36,7 +36,7 @@
     "title": "Node Api",
     "description": "",
     "dueDate": "2026-06-18",
-    "completed": false,
+    "completed": true,
     "createdAt": "2026-06-04T11:06:14.320Z"
   }
 ]

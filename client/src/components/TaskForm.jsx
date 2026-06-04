@@ -75,61 +75,149 @@ function TaskForm({
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>
+      <h2
+        style={{
+          marginBottom: "20px",
+          color: "#1e293b",
+          textAlign: "center",
+        }}
+      >
         {editingTask
-          ? "Edit Task"
-          : "Add Task"}
+          ? "✏️ Edit Task"
+          : "➕ Add New Task"}
       </h2>
 
-      <input
-        type="text"
-        placeholder="Task Title"
-        value={title}
-        onChange={(e) =>
-          setTitle(e.target.value)
-        }
-      />
-
-      <br />
-      <br />
-
-      <textarea
-        placeholder="Description"
-        value={description}
-        onChange={(e) =>
-          setDescription(e.target.value)
-        }
-      />
-
-      <br />
-      <br />
-
-      <input
-        type="date"
-        value={dueDate}
-        onChange={(e) =>
-          setDueDate(e.target.value)
-        }
-      />
-
-      <br />
-      <br />
-
-      <button type="submit">
-        {editingTask
-          ? "Update Task"
-          : "Add Task"}
-      </button>
-
-      {editingTask && (
-        <button
-          type="button"
-          onClick={handleCancelEdit}
-          style={{ marginLeft: "10px" }}
+      <div style={{ marginBottom: "15px" }}>
+        <label
+          style={{
+            display: "block",
+            marginBottom: "6px",
+            fontWeight: "600",
+          }}
         >
-          Cancel
+          Task Title
+        </label>
+
+        <input
+          type="text"
+          placeholder="Enter task title"
+          value={title}
+          onChange={(e) =>
+            setTitle(e.target.value)
+          }
+          style={{
+            width: "100%",
+            padding: "12px",
+            border: "1px solid #d1d5db",
+            borderRadius: "8px",
+            fontSize: "15px",
+            boxSizing: "border-box",
+          }}
+        />
+      </div>
+
+      <div style={{ marginBottom: "15px" }}>
+        <label
+          style={{
+            display: "block",
+            marginBottom: "6px",
+            fontWeight: "600",
+          }}
+        >
+          Description
+        </label>
+
+        <textarea
+          placeholder="Enter task description"
+          value={description}
+          onChange={(e) =>
+            setDescription(e.target.value)
+          }
+          rows="4"
+          style={{
+            width: "100%",
+            padding: "12px",
+            border: "1px solid #d1d5db",
+            borderRadius: "8px",
+            resize: "vertical",
+            fontSize: "15px",
+            boxSizing: "border-box",
+          }}
+        />
+      </div>
+
+      <div style={{ marginBottom: "20px" }}>
+        <label
+          style={{
+            display: "block",
+            marginBottom: "6px",
+            fontWeight: "600",
+          }}
+        >
+          Due Date
+        </label>
+
+        <input
+          type="date"
+          value={dueDate}
+          onChange={(e) =>
+            setDueDate(e.target.value)
+          }
+          style={{
+            width: "100%",
+            padding: "12px",
+            border: "1px solid #d1d5db",
+            borderRadius: "8px",
+            fontSize: "15px",
+            boxSizing: "border-box",
+          }}
+        />
+      </div>
+
+      <div
+        style={{
+          display: "flex",
+          gap: "10px",
+          flexWrap: "wrap",
+        }}
+      >
+        <button
+          type="submit"
+          style={{
+            backgroundColor: editingTask
+              ? "#f59e0b"
+              : "#2563eb",
+            color: "white",
+            border: "none",
+            padding: "12px 20px",
+            borderRadius: "8px",
+            cursor: "pointer",
+            fontWeight: "600",
+          }}
+        >
+          {editingTask
+            ? "Update Task"
+            : "Add Task"}
         </button>
-      )}
+
+        {editingTask && (
+          <button
+            type="button"
+            onClick={handleCancelEdit}
+            style={{
+              backgroundColor: "#ef4444",
+              color: "white",
+              border: "none",
+              padding: "12px 20px",
+              borderRadius: "8px",
+              cursor: "pointer",
+              fontWeight: "600",
+            }}
+          >
+            Cancel
+          </button>
+        )}
+      </div>
     </form>
   );
 }

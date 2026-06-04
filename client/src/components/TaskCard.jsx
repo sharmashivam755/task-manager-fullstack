@@ -39,61 +39,147 @@ function TaskCard({ task, fetchTasks, onEdit }) {
   return (
     <div
       style={{
+        backgroundColor: "#ffffff",
+        borderRadius: "12px",
+        padding: "20px",
+        marginBottom: "16px",
+        boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
         border: isOverdue
-          ? "2px solid red"
-          : "1px solid #ccc",
-        backgroundColor: isOverdue
-          ? "#ffe5e5"
-          : "#fff",
-        padding: "12px",
-        marginBottom: "12px",
-        borderRadius: "8px",
+          ? "2px solid #ef4444"
+          : "1px solid #e5e7eb",
       }}
     >
-      <h3>{task.title}</h3>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginBottom: "12px",
+          flexWrap: "wrap",
+        }}
+      >
+        <h3
+          style={{
+            margin: 0,
+            color: "#1e293b",
+          }}
+        >
+          {task.title}
+        </h3>
 
-      <p>{task.description}</p>
+        <span
+          style={{
+            padding: "6px 12px",
+            borderRadius: "20px",
+            fontSize: "13px",
+            fontWeight: "600",
+            backgroundColor: task.completed
+              ? "#dcfce7"
+              : isOverdue
+              ? "#fee2e2"
+              : "#dbeafe",
+            color: task.completed
+              ? "#15803d"
+              : isOverdue
+              ? "#dc2626"
+              : "#2563eb",
+          }}
+        >
+          {task.completed
+            ? "Completed"
+            : isOverdue
+            ? "Overdue"
+            : "Active"}
+        </span>
+      </div>
 
-      <p>
-        <strong>Due:</strong>{" "}
-        {task.dueDate || "No due date"}
+      <p
+        style={{
+          color: "#475569",
+          marginBottom: "15px",
+        }}
+      >
+        {task.description || "No description"}
       </p>
 
-      <p>
-        <strong>Status:</strong>{" "}
-        {task.completed ? "Completed" : "Active"}
+      <p
+        style={{
+          marginBottom: "15px",
+          color: "#64748b",
+        }}
+      >
+        <strong>Due Date:</strong>{" "}
+        {task.dueDate || "Not Set"}
       </p>
 
       {isOverdue && (
         <p
           style={{
-            color: "red",
-            fontWeight: "bold",
+            color: "#dc2626",
+            fontWeight: "600",
+            marginBottom: "15px",
           }}
         >
-          ⚠️ Overdue Task
+          ⚠️ This task is overdue
         </p>
       )}
 
-      <button onClick={handleToggle}>
-        {task.completed
-          ? "Mark Active"
-          : "Mark Complete"}
-      </button>
-
-      <button
-        onClick={() => onEdit(task)}
-        style={{ marginLeft: "10px" }}
+      <div
+        style={{
+          display: "flex",
+          gap: "10px",
+          flexWrap: "wrap",
+        }}
       >
-        Edit
-      </button>
+        <button
+          onClick={handleToggle}
+          style={{
+            backgroundColor: task.completed
+              ? "#f59e0b"
+              : "#22c55e",
+            color: "#fff",
+            border: "none",
+            padding: "10px 14px",
+            borderRadius: "8px",
+            cursor: "pointer",
+            fontWeight: "600",
+          }}
+        >
+          {task.completed
+            ? "Mark Active"
+            : "Mark Complete"}
+        </button>
 
-      <button
-        onClick={handleDelete}
-        style={{ marginLeft: "10px" }}
-      >
-        Delete
-      </button>
+        <button
+          onClick={() => onEdit(task)}
+          style={{
+            backgroundColor: "#3b82f6",
+            color: "#fff",
+            border: "none",
+            padding: "10px 14px",
+            borderRadius: "8px",
+            cursor: "pointer",
+            fontWeight: "600",
+          }}
+        >
+          Edit
+        </button>
+
+        <button
+          onClick={handleDelete}
+          style={{
+            backgroundColor: "#ef4444",
+            color: "#fff",
+            border: "none",
+            padding: "10px 14px",
+            borderRadius: "8px",
+            cursor: "pointer",
+            fontWeight: "600",
+          }}
+        >
+          Delete
+        </button>
+      </div>
     </div>
   );
 }
