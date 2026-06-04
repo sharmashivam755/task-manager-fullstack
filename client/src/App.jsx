@@ -8,6 +8,7 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const [filter, setFilter] = useState("all");
   const [editingTask, setEditingTask] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const fetchTasks = async () => {
     try {
@@ -32,15 +33,19 @@ function App() {
   const activeTasks = tasks.length - completedTasks;
 
   const filteredTasks = tasks.filter((task) => {
+    const matchesSearch = task.title
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+
     if (filter === "active") {
-      return !task.completed;
+      return !task.completed && matchesSearch;
     }
 
     if (filter === "completed") {
-      return task.completed;
+      return task.completed && matchesSearch;
     }
 
-    return true;
+    return matchesSearch;
   });
 
   return (
@@ -66,6 +71,21 @@ function App() {
       />
 
       <hr />
+
+      <input
+        type="text"
+        placeholder="Search tasks..."
+        value={searchTerm}
+        onChange={(e) =>
+          setSearchTerm(e.target.value)
+        }
+        style={{
+          width: "100%",
+          padding: "10px",
+          marginBottom: "15px",
+          boxSizing: "border-box",
+        }}
+      />
 
       <div style={{ marginBottom: "20px" }}>
         <button onClick={() => setFilter("all")}>
