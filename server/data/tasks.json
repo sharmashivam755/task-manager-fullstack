@@ -8,14 +8,6 @@
     "createdAt": "2026-06-02T20:27:29.109Z"
   },
   {
-    "id": "86886f29-c8bb-4347-bc3d-ad5dd04e8be0",
-    "title": "hello world ",
-    "description": "hii this is shivam",
-    "dueDate": "2026-06-11",
-    "completed": false,
-    "createdAt": "2026-06-04T10:59:00.232Z"
-  },
-  {
     "id": "9a5e8175-b0e0-4dca-86d3-3f3e5e8a56d2",
     "title": "Test Overdue",
     "description": "",
