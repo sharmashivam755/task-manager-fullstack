@@ -1,6 +1,11 @@
 import axios from "axios";
 
 function TaskCard({ task, fetchTasks, onEdit }) {
+  const isOverdue =
+    task.dueDate &&
+    !task.completed &&
+    new Date(task.dueDate) < new Date();
+
   const handleToggle = async () => {
     try {
       await axios.patch(
@@ -34,7 +39,12 @@ function TaskCard({ task, fetchTasks, onEdit }) {
   return (
     <div
       style={{
-        border: "1px solid #ccc",
+        border: isOverdue
+          ? "2px solid red"
+          : "1px solid #ccc",
+        backgroundColor: isOverdue
+          ? "#ffe5e5"
+          : "#fff",
         padding: "12px",
         marginBottom: "12px",
         borderRadius: "8px",
@@ -45,13 +55,25 @@ function TaskCard({ task, fetchTasks, onEdit }) {
       <p>{task.description}</p>
 
       <p>
-        <strong>Due:</strong> {task.dueDate || "No due date"}
+        <strong>Due:</strong>{" "}
+        {task.dueDate || "No due date"}
       </p>
 
       <p>
         <strong>Status:</strong>{" "}
         {task.completed ? "Completed" : "Active"}
       </p>
+
+      {isOverdue && (
+        <p
+          style={{
+            color: "red",
+            fontWeight: "bold",
+          }}
+        >
+          ⚠️ Overdue Task
+        </p>
+      )}
 
       <button onClick={handleToggle}>
         {task.completed
