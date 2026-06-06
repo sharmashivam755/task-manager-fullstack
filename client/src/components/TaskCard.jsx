@@ -27,7 +27,7 @@ function TaskCard({ task, fetchTasks, onEdit }) {
 
     try {
       await axios.delete(
-        `http://localhost:5000/api/tasks/${task.id}`
+        `https://task-manager-fullstack-il39.onrender.com/api/tasks/${task.id}`
       );
 
       fetchTasks();
